@@ -1,0 +1,335 @@
+:root {
+  --blue:#0280f4;
+  --blueShadow: rgba(4, 83, 202, 0.35);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: 'Helvetica Neue', HelveticaNeue, 'HelveticaNeue-Light', 'Helvetica Neue Light', helvetica, arial, sans-serif;
+}
+
+input {
+  border: rgb(183, 188, 191);
+  border-radius: 4px;
+}
+
+input::placeholder {
+  color: rgb(108, 115, 120);
+}
+
+label {
+  color: rgb(108, 115, 120) !important;
+}
+
+#small-sticker {
+  width: 800px;
+  height: auto;
+  max-width: auto;
+  transform: rotate(-2deg);
+  cursor: pointer;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.35)
+}
+
+#big-sticker {
+    transform: rotate(-1deg);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.35)
+}
+
+#arrow {
+  position: absolute;
+  left: 28%;
+  top: -40px;
+  transform: translate(-50%, -50%);
+  height: auto;
+  width: 70px;
+}
+
+
+@media screen and (min-width: 768px) {
+	#arrow {
+		width: 80px;
+		left: 32%;
+	}
+}
+@media screen and (min-width: 992px) {
+	#arrow {
+		width: 80px;
+		left: 36%;
+	}
+}
+
+@media screen and (min-width: 1200px) {
+	#arrow {
+		width: 100px;
+		left: 38%;
+	}
+}
+
+#modalCarousel {
+	width: 95%;
+	margin: 0 auto;
+}
+
+#modalCalloutDescription {
+
+}
+
+.carousel-control-next,
+.carousel-control-prev,
+.carousel-control-next:hover,
+.carousel-control-prev:hover {
+	width: 10%;
+	opacity: 1
+}
+
+.carousel-control-next {
+	transform: translateX(50%);
+}
+
+.carousel-control-prev {
+	transform: translateX(-50%);
+}
+
+.carousel-control-prev-icon {
+	background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000' %3e%3cpath d='M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z'/%3e%3c/svg%3e")
+}
+.carousel-control-next-icon {
+    background-image:url("data: image/svg+xml, %3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000' %3e%3cpath d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z' /%3e%3c/svg%3e")
+}
+
+.carousel-control-next-icon,
+.carousel-control-prev-icon {
+	opacity: 1;
+	height: 2rem;
+	border-radius: 4px;
+	background-color: rgba(255, 255, 255, 1);
+	background-position: center center;
+	background-size: 60%;
+	box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+.carousel:hover .carousel-control-next-icon,
+.carousel:hover .carousel-control-prev-icon {
+	opacity: 1;
+	transition: 0.3s ease opacity;
+}
+
+#formLoader {
+	display: none;
+}
+.loading ~ #formLoader {
+	display: block
+}
+#buyForm.loading {
+	display: none;
+}
+
+#us-flag-top {
+    max-width: 60px;
+    height: auto;
+    display: block;
+}
+
+#price-top,
+#price-modal {
+    background-color:rgba(80, 158, 85, 0.12);
+    padding: 2px 6px;
+    border-radius: 3px;
+	color: green;
+}
+
+#price-modal {
+	position: relative;
+	font-size: 1.5rem;
+	background-color: rgba(59, 150, 65, 0.1);
+	color: green;
+	/* left: 10px; */
+}
+
+#estimate {
+	font-size: 1.5rem;
+}
+
+#buyNowModal .form-floating input {
+	height: 50px;
+}
+
+#price-top {
+    margin-right: 10px;
+}
+
+h1, h2, h3 {
+    font-family: 'Arial Black', Arial, Helvetica, sans-serif;
+    letter-spacing: -0.05em;
+}
+
+
+h1:first-of-type > small {
+    text-transform: uppercase;
+    letter-spacing: 0px;
+
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  :root {
+    scroll-behavior: smooth;
+  }
+}
+
+@keyframes glowing {
+  0% {
+    background-color: var(--blue);
+    box-shadow: 0 0 5px var(--blueShadow);
+  }
+
+  50% {
+    background-color: var(--blue);
+    box-shadow: 0 0 20px var(--blueShadow);
+  }
+
+  100% {
+    background-color: var(--blue);
+    box-shadow: 0 0 5px var(--blueShadow);
+  }
+}
+
+#main-cta {
+  /* animation: glowing 1300ms infinite; */
+  /* border-color: var(--blue); */
+	background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
+	background-size: 400% 400%;
+	-webkit-animation: ChatGradient 4s ease infinite;
+	-moz-animation: ChatGradient 4s ease infinite;
+	border: none;
+	transition: all 0.05s ease-in;
+	will-change: box-shadow, transform;
+	font-size: 1.4rem;
+}
+
+#main-cta:hover {
+	box-shadow: 2px 12px 14px rgba(0, 0, 0, 0.3);
+	transform: scale(1.05);
+}
+
+@keyframes ChatGradient {
+	0% {
+		background-position: 0% 50%
+	}
+
+	50% {
+		background-position: 100% 50%
+	}
+
+	100% {
+		background-position: 0% 50%
+	}
+}
+
+button.btn.btn-primary, a.btn.btn-primary {
+  cursor: pointer;
+  border-radius: 3px;
+  background: linear-gradient(#2597fe 0%, #43a6ff 1.03%, #1790fe 1.64%, #0280f4 100%);
+  border: 1px solid #0280f4;
+  box-shadow: 0px 1px 1px rgb(48 75 83 / 37%);
+  color: white;
+  min-width: 60px;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+.masthead {
+  background-image: url('../assets/img/bg.jpg');
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+  background-position: top center;
+}
+
+a[href] {
+  color: var(--blue)
+}
+
+a[href*="tel:"] {
+  text-decoration: none;
+  border-bottom: 1px dashed var(--blue);
+  margin-left: 4px;
+}
+
+#modalImages {
+	margin-bottom: 2.5em;
+}
+
+#modalImagesInner {
+  /* height: 350px; */
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+/* #modalImagesInner > div {
+  transform: translateY(-25%);
+} */
+
+#paypal-button-container {
+	max-width: 400px;
+	margin: 0 auto;
+	margin-bottom: 2rem;
+}
+
+#checkout > table {
+	max-width: 350px;
+	margin: 0 auto;
+}
+
+.carousel-indicators {
+	margin-bottom: -1.5rem;
+	mix-blend-mode: difference;
+}
+
+.vr {
+	display: inline-block;
+	align-self: stretch;
+	width: 1px;
+	min-height: 1em;
+	background-color: #212529;
+	opacity: .25;
+	height: 100%;
+}
+
+#quantityIllustration {
+	position: relative;
+	max-width: 400px;
+	width: 100%;
+	height: auto;
+	margin: 0 auto 40px auto;
+}
+
+#quantityIllustration img {
+	display: block;
+	width: 100%;
+	height: auto;
+	transform: rotate(-2deg);
+	box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.35)
+}
+
+#quantityIllustration > div {
+	position: absolute;
+	bottom: -8%;
+	right: 5%;
+	border-radius: 50%;
+	background-color:var(--blue);
+	box-shadow: 0px 2px 12px rgba(4, 83, 202, 0.35);
+	color: white;
+	font-weight: bold;
+	text-align: center;
+	font-size: 16px;
+	vertical-align: middle;
+	padding: 1%;
+	z-index: 2;
+	min-width: 35px;
+	min-height: 35px;
+}
