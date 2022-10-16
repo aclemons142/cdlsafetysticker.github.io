@@ -2,15 +2,30 @@ const LOCAL = window.location.hostname == "localhost" ? true : false;
 const STICKER_GET_DATA_URI = '/sticker-data';
 const GET_SHIPPING_DATA_URI = '/shipping-data';
 const SUBMIT_PRINT_ORDER = '/submit-print-order'
+const TODAY = new Date();
+const LAUNCH = new Date("10/20/2022")
+const UNDER_CONSTRUCTION = true;
 
 const URL = LOCAL ? 'http://127.0.0.1:3000' : 'https://services.cdlsafetysticker.com';
 
 
-(() => {
-    let yearElem = document.getElementById('year');
-    let year = new Date().getFullYear().toString()
-    yearElem.innerText = year;
-})();
+// Init
+// Set copyright year
+let yearElem = document.getElementById('year');
+let year = new Date().getFullYear().toString()
+yearElem.innerText = year;
+
+// Set under construction banner
+if (UNDER_CONSTRUCTION) {
+    let banner = document.getElementById("banner");
+    let cta = document.getElementById("main-cta");
+    let navCta = document.getElementById("mainNav").querySelectorAll("button").item(0);
+    banner.classList.remove("d-none");
+    banner.innerText = "Our webpage is still under development. Please call 1-888-219-2856 to order.";
+    cta.classList.add("disabled")
+    navCta.classList.add("disabled");
+}
+
 
 // DOM Ready
 window.addEventListener('DOMContentLoaded', async (event) => {
