@@ -216,6 +216,13 @@ h1:first-of-type > small {
 	box-shadow: 2px 12px 14px rgba(0, 0, 0, 0.3);
 	transform: scale(1.05);
 }
+#mainNav button.disabled,
+#main-cta.disabled {
+	background: transparent;
+	background-color: lightgray;
+	border-color: transparent;
+	cursor:not-allowed;
+}
 
 @keyframes ChatGradient {
 	0% {
