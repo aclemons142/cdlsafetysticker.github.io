@@ -3,7 +3,7 @@ const STICKER_GET_DATA_URI = '/sticker-data';
 const GET_SHIPPING_DATA_URI = '/shipping-data';
 const SUBMIT_PRINT_ORDER = '/submit-print-order'
 
-const URL = LOCAL ? 'http://127.0.0.1:3000' : 'https://services.cdlsafetysticker.com:3000';
+const URL = LOCAL ? 'http://127.0.0.1:3000' : 'https://services.cdlsafetysticker.com';
 
 
 (() => {
