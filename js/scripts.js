@@ -92,6 +92,7 @@ window.addEventListener('DOMContentLoaded', async (event) => {
     backButton.addEventListener('click', async () => ShowFormScreen(checkout, form, paypalButtonsContainer))
     modal.addEventListener('hidden.bs.modal', () => {
         ShowFormScreen(checkout, form, paypalButtonsContainer);
+        finish.classList.add('d-none');
     })
     
 
@@ -142,12 +143,13 @@ window.addEventListener('DOMContentLoaded', async (event) => {
         return standard / 100;
     }
 
-    async function SubmitPrintOrder(address, quantity, paypalOrderId) {
+    async function SubmitPrintOrder(userData, quantity, paypalOrderId) {
         let orderSubmissionResponse = await fetch(URL + SUBMIT_PRINT_ORDER, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json;charset=utf-8' },
             body: JSON.stringify({
-                user: address,
+                user: userData.user,
+                address: userData.address,
                 qty: quantity,
                 id: paypalOrderId
             })
@@ -180,10 +182,13 @@ window.addEventListener('DOMContentLoaded', async (event) => {
         checkout.classList.add('d-none');
         finish.classList.remove('d-none');
         finish.children[0].classList.remove('d-none');
+        finish.children[1].classList.add('d-none');
     }
 
     function ShowTransactionFailure() {
         checkout.classList.add('d-none');
+        finish.classList.remove('d-none');
+        finish.children[0].classList.add('d-none');
         finish.children[1].classList.remove('d-none');
 
     }
@@ -249,7 +254,7 @@ window.addEventListener('DOMContentLoaded', async (event) => {
                     const captureOrderHandler = (details) => {
                         console.log('Transaction completed. Details: ' + JSON.stringify(details));
                         ShowTransactionSuccess();
-                        SubmitPrintOrder(address, quantity, data.orderID);
+                        SubmitPrintOrder(userData, quantity.value, data.orderID);
                     };
                     return actions.order.capture().then(captureOrderHandler);
                 },
