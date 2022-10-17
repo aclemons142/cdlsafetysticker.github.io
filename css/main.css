@@ -1,6 +1,8 @@
 :root {
   --blue:#0280f4;
   --blueShadow: rgba(4, 83, 202, 0.35);
+  --greenBg: rgba(59, 150, 65, 0.1);
+  --green: rgb(0, 139, 9);
 }
 
 *,
@@ -12,6 +14,10 @@
 
 body {
   font-family: 'Helvetica Neue', HelveticaNeue, 'HelveticaNeue-Light', 'Helvetica Neue Light', helvetica, arial, sans-serif;
+}
+
+.alert.alert-success {
+	background-color: var(--greenBg);
 }
 
 input {
@@ -50,6 +56,19 @@ label {
   width: 70px;
 }
 
+@media screen and (min-width: 200px) {
+	#arrow {
+		display: none;
+	}
+}
+
+@media screen and (min-width: 350px) {
+	#arrow {
+		display: block;
+		width: 60px;
+		left: 12%;
+	}
+}
 
 @media screen and (min-width: 768px) {
 	#arrow {
@@ -74,10 +93,6 @@ label {
 #modalCarousel {
 	width: 95%;
 	margin: 0 auto;
-}
-
-#modalCalloutDescription {
-
 }
 
 .carousel-control-next,
@@ -136,20 +151,30 @@ label {
     display: block;
 }
 
+#us-flag-mini {
+	max-width: 26px;
+	height: auto;
+	display: inline-block;
+	margin-bottom: 4px;
+}
+
+.bg-light-grey {
+	background-color:rgb(219, 232, 241)
+}
+
 #price-top,
 #price-modal {
     background-color:rgba(80, 158, 85, 0.12);
     padding: 2px 6px;
     border-radius: 3px;
-	color: green;
+	color: var(--green);
 }
 
 #price-modal {
 	position: relative;
 	font-size: 1.5rem;
-	background-color: rgba(59, 150, 65, 0.1);
-	color: green;
-	/* left: 10px; */
+	background-color: var(--greenBg);
+	color: var(--green);
 }
 
 #estimate {
@@ -165,8 +190,9 @@ label {
 }
 
 h1, h2, h3 {
-    font-family: 'Arial Black', Arial, Helvetica, sans-serif;
+    font-family: "Arial Black", "Arial Bold", Arial, -apple-system, Gadget, Arial, Helvetica, sans-serif;
     letter-spacing: -0.05em;
+	font-weight: 900;
 }
 
 
@@ -200,8 +226,6 @@ h1:first-of-type > small {
 }
 
 #main-cta {
-  /* animation: glowing 1300ms infinite; */
-  /* border-color: var(--blue); */
 	background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
 	background-size: 400% 400%;
 	-webkit-animation: ChatGradient 4s ease infinite;
@@ -272,14 +296,9 @@ a[href*="tel:"] {
 }
 
 #modalImagesInner {
-  /* height: 350px; */
   border-radius: 5px;
   overflow: hidden;
 }
-
-/* #modalImagesInner > div {
-  transform: translateY(-25%);
-} */
 
 #paypal-button-container {
 	max-width: 400px;
@@ -287,7 +306,7 @@ a[href*="tel:"] {
 	margin-bottom: 2rem;
 }
 
-#checkout > table {
+#checkout table {
 	max-width: 350px;
 	margin: 0 auto;
 }
@@ -298,7 +317,6 @@ a[href*="tel:"] {
 }
 
 .vr {
-	display: inline-block;
 	align-self: stretch;
 	width: 1px;
 	min-height: 1em;
@@ -322,6 +340,23 @@ a[href*="tel:"] {
 	transform: rotate(-2deg);
 	box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.35)
 }
+#quantityIllustration img.duplicate {
+	position: absolute;
+	z-index: 0;
+	top: 10px;
+	left: 0;
+	box-shadow:  0 1px 2px rgba(0, 0, 0, 0.35);
+	transform-origin: top left;
+}
+#quantityIllustration img.duplicate:nth-of-type(1) {
+	transform: rotate(-2.5deg);
+}
+#quantityIllustration img.duplicate:nth-of-type(2) {
+	transform: rotate(-3deg);
+}
+#quantityIllustration img.duplicate:nth-of-type(3) {
+	transform: rotate(-3.5deg);
+}
 
 #quantityIllustration > div {
 	position: absolute;
@@ -339,4 +374,25 @@ a[href*="tel:"] {
 	z-index: 2;
 	min-width: 35px;
 	min-height: 35px;
+}
+
+input.override-with-error {
+	border-color: red !important;
+	color: red !important;
+	background-color:rgb(255, 234, 234);
+	background-image: none !important;
+}
+input.override-with-error ~ .valid-feedback {
+	display: none !important;
+}
+input.override-with-error~.invalid-feedback {
+	display: block !important;
+}
+
+#finish .alert > div {
+	margin-bottom: 10px;
+}
+
+#finish i {
+	font-size: 2.5rem;
 }

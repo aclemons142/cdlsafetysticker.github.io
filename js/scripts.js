@@ -18,12 +18,17 @@ yearElem.innerText = year;
 // Set under construction banner
 if (UNDER_CONSTRUCTION) {
     let banner = document.getElementById("banner");
+    let sticker = document.getElementById("small-sticker");
     let cta = document.getElementById("main-cta");
     let navCta = document.getElementById("mainNav").querySelectorAll("button").item(0);
     banner.classList.remove("d-none");
     banner.innerText = "Our webpage is still under development. Please call 1-888-219-2856 to order.";
     cta.classList.add("disabled")
     navCta.classList.add("disabled");
+    sticker.style.pointerEvents = "none";
+} else {
+    let comingSoon = document.querySelectorAll(".coming-soon");
+    comingSoon.forEach(e => e.classList.add("d-none"))
 }
 
 
@@ -52,6 +57,7 @@ window.addEventListener('DOMContentLoaded', async (event) => {
     let modalCarouselIndicators = modalCallout.querySelectorAll("#modalCarouselIndicators")[0];
     let form = document.getElementById("buyForm");
     let checkout = document.getElementById("checkout");
+    let orderOverview = new bootstrap.Collapse(document.getElementById("orderOverview"), { toggle: false });
     let finish = document.getElementById("finish");
     let quantity = document.getElementById("quantity");
     let backButton = document.getElementById("backButton");
@@ -76,9 +82,12 @@ window.addEventListener('DOMContentLoaded', async (event) => {
         event.preventDefault();
         event.stopPropagation();
         let data = new FormData(form);
+        let phoneElement = document.getElementsByName('phone')[0];
         if (!form.checkValidity() || !ValidatePhone(data.get('phone'))) {
             form.classList.add('was-validated');
+            if (!ValidatePhone(data.get('phone'))) phoneElement.classList.add("override-with-error")
         } else {
+            phoneElement.classList.remove("override-with-error");
             form.classList.add('loading');
             form.classList.remove('d-block');
             let quantity = parseInt(data.get('quantity'));
@@ -108,6 +117,7 @@ window.addEventListener('DOMContentLoaded', async (event) => {
     modal.addEventListener('hidden.bs.modal', () => {
         ShowFormScreen(checkout, form, paypalButtonsContainer);
         finish.classList.add('d-none');
+        ShowOrderOverview();
     })
     
 
@@ -138,6 +148,19 @@ window.addEventListener('DOMContentLoaded', async (event) => {
         checkoutElements.shipping.innerText = "$" + FormatCurrency(SHIPPING.toFixed(2)) + " (Standard Shipping)";
         checkoutElements.total.innerText = "$" + FormatCurrency((TOTAL).toFixed(2));
         quantityIllustration.innerText = quantity;
+
+        let illustration = quantityIllustration.parentElement;
+        let illustrationToDuplicate = illustration.querySelector("img");
+        let previousDupes = illustration.querySelectorAll("img.duplicate");
+        if (previousDupes.length > 0) previousDupes.forEach(e =>e.remove());
+
+        if (quantity > 1) {
+            for (let i = 0; i < 2; i++) {
+                let c = illustrationToDuplicate.cloneNode(true);
+                c.classList.add("duplicate");
+                illustrationToDuplicate.after(c)
+            }
+        }
 
         return { SUBTOTAL, TOTAL, SHIPPING }
 
@@ -174,7 +197,7 @@ window.addEventListener('DOMContentLoaded', async (event) => {
     }
 
     function ValidatePhone(phoneNumber) {
-        const regEx = /(?:\d{1}\s)?\(?(\d{3})\)?-?\s?(\d{3})-?\s?(\d{4})/;
+        const regEx = /^(1[-. ]?)?(\([2-9]\d{2}\)[-. ]?|[2-9]\d{2}[-. ]?)[2-9]\d{2}[-. ]?\d{4}$/;
         return regEx.test(phoneNumber);
     };
 
@@ -205,7 +228,14 @@ window.addEventListener('DOMContentLoaded', async (event) => {
         finish.classList.remove('d-none');
         finish.children[0].classList.add('d-none');
         finish.children[1].classList.remove('d-none');
+    }
 
+    function CollapseOrderOverview() {
+        orderOverview.hide();
+    }
+
+    function ShowOrderOverview() {
+        orderOverview.show();
     }
 
     function FormatCurrency(fixedNumberCurrency) {
@@ -278,7 +308,7 @@ window.addEventListener('DOMContentLoaded', async (event) => {
                     console.error('An error prevented the buyer from checking out with PayPal')
                 },
                 onClick: function (e) {
-                    console.dir(e);
+                    if (e.fundingSource === 'card') CollapseOrderOverview()
                 }
 
             });
