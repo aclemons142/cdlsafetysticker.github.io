@@ -11,8 +11,11 @@
 	<!-- Bootstrap icons -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
 	<!-- Bootstrap -->
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+		crossorigin="anonymous"></script>
 	<!-- Main styles -->
 	<link href="css/main.css" rel="stylesheet" />
 </head>
@@ -21,13 +24,14 @@
 	<!-- Navigation-->
 	<nav class="navbar navbar-expand-lg navbar-light shadow-sm" id="mainNav">
 		<div class="container px-5">
-			<a class="navbar-brand fw-bold" href="#page-top">🇺🇸 The CDL Safety Sticker</a>
-			<small class="navbar-brand d-md-inline-block text-muted d-none">Buy online or toll-free at <a href="tel:1-888-219-2856"><i class="bi bi-telephone-fill"></i> 1-888-219-2856</a></small>
+			<a class="navbar-brand fw-bold" href="#page-top"><img id="us-flag-mini" src="./assets/img/us-flag.gif"> The
+				CDL Safety Sticker</a>
+			<small class="navbar-brand d-md-inline-block text-muted d-none">Buy online or toll-free at <a
+					href="tel:1-888-219-2856"><i class="bi bi-telephone-fill"></i> 1-888-219-2856</a></small>
 			<div class="d-flex align-items-center">
 				<div class="ml-auto">
-					<div id="old-price" class="mt-2 d-inline-block text-muted text-decoration-line-through">$12.99</div>
-					<div id="price-top"
-						class="mt-2 d-inline-block fw-semibold">$8.99</div>
+					<div id="old-price" class="mt-2 d-inline-block text-muted text-decoration-line-through">$10.99</div>
+					<div id="price-top" class="mt-2 d-inline-block fw-semibold">$9.99</div>
 					<button class="btn btn-primary rounded-pill" data-bs-toggle="modal" data-bs-target="#buyNowModal">
 						<span class="d-flex align-items-center">
 							<span class="small"><i class="bi bi-cart-fill"></i> Buy Now</span>
@@ -58,25 +62,31 @@
 								<img src="./assets/img/the-original.gif" class="img-fluid">
 							</div>
 						</div>
-						<h1 class="display-2 text-center"><small class="d-none">The Original<br /></small> CDL Safety Sticker</h1>
-						<p class="lead fw-normal text-center">Give your customers peace of mind with this easily visible trailer sticker</p>
+						<h1 class="display-2 text-center"><small class="d-none">The Original<br /></small> CDL Safety
+							Sticker</h1>
+						<p class="lead fw-normal text-center">Give your customers peace of mind with this easily visible
+							trailer sticker.<br />Our premium quality sticker will proudly highlight your certification
+							and insurance status.</p>
 						<div class="row">
 							<div class="col-12 text-center mt-2 mb-4">
-								<img id="small-sticker" src="./assets/img/sticker.jpg" class="img-fluid">
+								<img id="small-sticker" src="./assets/img/sticker.jpg" class="img-fluid"
+									data-bs-toggle="modal" data-bs-target="#buyNowModal">
 							</div>
 						</div>
 						<div class="d-flex text-center align-items-center">
-							<button class="btn mx-auto btn-primary rounded-pill" id="main-cta" data-bs-toggle="modal" data-bs-target="#buyNowModal"><i class="bi bi-cart-fill"></i> Buy Now
+							<button class="btn mx-auto btn-primary rounded-pill" id="main-cta" data-bs-toggle="modal"
+								data-bs-target="#buyNowModal"><i class="bi bi-cart-fill"></i> Buy Now
 							</button>
 						</div>
 						<div class="col">
 							<div class="position-relative">
 								<img id="arrow" src="./assets/img/arrow.gif">
 							</div>
-						</div>		
+						</div>
 						<div class="text-center mb-5">
 							<small>or call toll-free</small><br />
-							<p class="h5"><a href="tel:1-888-219-2856"><i class="bi bi-telephone-fill"></i> 1-888-219-2856</a></p>
+							<p class="h5"><a href="tel:1-888-219-2856"><i class="bi bi-telephone-fill"></i>
+									1-888-219-2856</a></p>
 						</div>
 					</div>
 				</div>
@@ -92,12 +102,51 @@
 			</div>
 		</div>
 	</main>
+	<!-- Payments Accepted-->
+	<article>
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="lead text-center mb-4">We accept the following payment methods:</div>
+				</div>
+			</div>
+			<div class="row justify-content-md-center">
 
+				<div class="col-9 mx-auto row">
+					<div class="col-12 col-md-6 mb-2">
+						<div class="card">
+							<div class="card-body">
+								<h5 class="card-title text-center">
+									<i class="bi bi-telephone"></i> Phone
+								</h5>
+								<img src="./assets/img/phone-payment-methods.jpg" alt="Phone Payment Methods"
+									class="img-fluid">
+							</div>
+						</div>
+					</div>
+					<div class="col-12 col-md-6 mb-2">
+						<div class="card">
+							<div class="card-body">
+								<h5 class="card-title text-center">
+									<i class="bi bi-globe2"></i> Online <small
+										class="coming-soon badge rounded-pill bg-light-grey text-dark"
+										style="font-size: 12px; position: relative; top: -2px">Coming Soon</small>
+								</h5>
+								<img src="./assets/img/online-payment-methods.jpg" alt="Online Payment Methods"
+									class="img-fluid">
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</article>
 	<!-- Footer-->
 	<footer class="bg-black text-center py-5">
 		<div class="container px-5">
 			<div class="text-gray-50 small">
-				<span id="year">2000</span> &#169; CDL Safety Sticker
+				<span id="year">2022</span> &#169; CDL Safety Sticker
 			</div>
 		</div>
 	</footer>
@@ -110,25 +159,28 @@
 					<button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
 				<div class="modal-body border-0 p-4">
-					<!-- Buy Now Form -->					
+					<!-- Buy Now Form -->
 					<form id="buyForm" class="needs-validation px-3" novalidate>
 						<div id="modalCallout" class="">
 							<div id="modalImages">
 								<div id="modalCarousel" class="carousel slide" data-ride="carousel">
 									<ol id="modalCarouselIndicators" class="carousel-indicators"></ol>
 									<div id="modalImagesInner" class="carousel-inner"></div>
-									<button class="carousel-control-prev" type="button" data-bs-target="#modalCarousel" data-bs-slide="prev">
+									<button class="carousel-control-prev" type="button" data-bs-target="#modalCarousel"
+										data-bs-slide="prev">
 										<span class="carousel-control-prev-icon" aria-hidden="true"></span>
 										<span class="visually-hidden">Previous</span>
 									</button>
-									<button class="carousel-control-next" type="button" data-bs-target="#modalCarousel" data-bs-slide="next">
+									<button class="carousel-control-next" type="button" data-bs-target="#modalCarousel"
+										data-bs-slide="next">
 										<span class="carousel-control-next-icon" aria-hidden="true"></span>
 										<span class="visually-hidden">Next</span>
 									</button>
 								</div>
 							</div>
 							<div id="modalCalloutDescription" class="mt-3">
-								<h4>The CDL Safety Sticker<span class="ps-2 lead text-muted">15x3.75" Bumper Sticker</span></h4>
+								<h4>The CDL Safety Sticker<span class="ps-2 lead text-muted">15x3.75" Bumper
+										Sticker</span></h4>
 								<div id="price-modal" class="d-inline"></div>
 								<div class="mt-2 d-inline-block text-muted">
 									<span class="text-decoration-line-through">$10.99</span>
@@ -149,8 +201,6 @@
 									<label for="quantity" class="form-label">Quantity</label>
 									<select id="quantity" name="quantity" class="form-select">
 										<option>1</option>
-										<option>2</option>
-										<option>4</option>
 										<option>3</option>
 										<option>5</option>
 										<option>10</option>
@@ -160,10 +210,14 @@
 										<option>500</option>
 									</select>
 								</div>
-								<div class="col-auto"><div class="vr"></div></div>
+								<div class="col-auto">
+									<div class="vr d-none d-md-inline-block"></div>
+								</div>
 								<div class="col">
-									<label>Estimated Price:</label><br /><span id="estimate" class="d-block mt-2">-.--</span>
-									<small class="text-muted">Shipping charges will be estimated on the next screen</small>
+									<label>Estimated Price:</label><br /><span id="estimate"
+										class="d-block mt-2">-.--</span>
+									<small class="text-muted">Shipping charges will be estimated on the next
+										screen</small>
 								</div>
 							</div>
 							<div class="row">
@@ -174,7 +228,8 @@
 							<div class="row g-3">
 								<div class="col-md-3">
 									<label for="firstName" class="form-label">First name</label>
-									<input type="text" class="form-control" id="firstName" name="firstName" value="alex" required>
+									<input type="text" class="form-control" id="firstName" name="firstName" value="alex"
+										required>
 									<div class="valid-feedback">
 										Looks good!
 									</div>
@@ -184,7 +239,8 @@
 								</div>
 								<div class="col-md-4">
 									<label for="lastName" class="form-label">Last name</label>
-									<input type="text" class="form-control" id="lastName" name="lastName" value="clemons" required>
+									<input type="text" class="form-control" id="lastName" name="lastName"
+										value="clemons" required>
 									<div class="valid-feedback">
 										Looks good!
 									</div>
@@ -194,7 +250,8 @@
 								</div>
 								<div class="col-md-5">
 									<label for="email" class="form-label">Email</label>
-									<input type="email" class="form-control" id="email" name="email" value="contact@aclemons.com" required>
+									<input type="email" class="form-control" id="email" name="email"
+										value="contact@aclemons.com" required>
 									<div class="valid-feedback">
 										Looks good!
 									</div>
@@ -204,7 +261,8 @@
 								</div>
 								<div class="col-md-5">
 									<label for="phone" class="form-label">Phone</label>
-									<input type="text" class="form-control" id="phone" name="phone" value="2698187846" required>
+									<input type="text" class="form-control" id="phone" name="phone" value="2698187846"
+										required>
 									<div class="valid-feedback">
 										Looks good!
 									</div>
@@ -214,14 +272,16 @@
 								</div>
 								<div class="col-md-6">
 									<label for="city" class="form-label">City</label>
-									<input type="text" class="form-control" id="city" name="city" value="Kentwood" required>
+									<input type="text" class="form-control" id="city" name="city" value="Kentwood"
+										required>
 									<div class="invalid-feedback">
 										Please provide a valid city.
 									</div>
 								</div>
 								<div class="col-md-12">
 									<label for="address1" class="form-label">Address</label>
-									<input type="text" class="form-control" id="address1" name="address1" value="1760 Gerda St SE" required>
+									<input type="text" class="form-control" id="address1" name="address1"
+										value="1760 Gerda St SE" required>
 									<div class="invalid-feedback">
 										Please provide a valid address
 									</div>
@@ -322,56 +382,69 @@
 								</div>
 							</div>
 						</div>
-						
+
 					</form>
 					<div id="formLoader" class="text-center">
 						<div class="spinner-border" role="status">
 							<span class="visually-hidden">Loading...</span>
 						</div>
 					</div>
-					<div id="checkout" class="d-none">
+					<div id="checkout" class="d-none accordion">
 						<button type="button" id="backButton" class="btn btn-outline-primary mb-2">Back</button>
-						<div id="quantityIllustration">
-							<div></div>
-							<img src="./assets/img/sticker.jpg">
+						<div class="accordion-item">
+							<div class="accordion-header">
+								<button class="accordion-button bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#orderOverview"
+									aria-expanded="true" aria-controls="orderOverview">
+									<h5 class="mb-0">Order Overview</h5>
+								</button>
+							</div>
+							<div id="orderOverview" class="accordion-collapse collapse show">
+								<div class="accordion-body">
+									<div id="quantityIllustration">
+										<div></div>
+										<img src="./assets/img/sticker.jpg">
+									</div>
+									<table class="table mb-4">
+										<tbody>
+											<tr>
+												<td>Subtotal</td>
+												<td><span id="checkout-subtotal"></span></td>
+											</tr>
+											<tr>
+												<td>Shipping</td>
+												<td><span id="checkout-shipping"></span></td>
+											</tr>
+											<tr>
+												<td>Fees</td>
+												<td class="text-muted">(Based on payment method)</td>
+											</tr>
+											<tr>
+												<td><strong class="lead">Total</strong></td>
+												<td><span id="checkout-total" class="lead"></span></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
 						</div>
-						<table class="table mb-4">
-							<tbody>
-								<tr>
-									<td>Subtotal</td>
-									<td><span id="checkout-subtotal"></span></td>
-								</tr>
-								<tr>
-									<td>Shipping</td>
-									<td><span id="checkout-shipping"></span></td>
-								</tr>
-								<tr>
-									<td>Fees</td>
-									<td class="text-muted">(Based on payment method)</td>
-								</tr>
-								<tr>
-									<td><strong class="lead">Total</strong></td>
-									<td><span id="checkout-total" class="lead"></span></td>
-								</tr>
-							</tbody>
-						</table>
-						<p class="lead text-center">Please select payment method below</p>
-						
+						<p class="lead text-center mt-3">Please select payment method below</p>
 						<!-- PayPal Buttons -->
 						<div id="paypal-button-container"></div>
 					</div>
 					<div id="finish" class="d-none">
 						<div id="success" class="d-none">
 							<div class="alert alert-success" role="alert">
+								<div><i class="bi bi-check-circle"></i></div>
 								<h4 class="alert-heading">Success!</h4>
 								Your order has been placed. Your tracing information will be available soon.
 							</div>
 						</div>
 						<div id="error" class="d-none">
 							<div class="alert alert-danger" role="alert">
+								<div><i class="bi bi-x-circle"></i></div>
 								<h4 class="alert-heading">Error</h4>
 								<p>We're sorry, there was an issue with your order.<br />
-								Please try again or call us at 1-888-219-2856</p>
+									Please try again or call us at 1-888-219-2856</p>
 							</div>
 						</div>
 					</div>
@@ -380,7 +453,8 @@
 		</div>
 	</div>
 	<!-- PayPal JS-->
-	<script src="https://www.paypal.com/sdk/js?client-id=Aa_9G10RIiMjqXtlwN4aaNZovbeooyYVBYbYTgtVqRoUs5Lo5axW2bIly3uu3YUHp5jXdBiFYVfize7l"></script>
+	<script
+		src="https://www.paypal.com/sdk/js?client-id=Aa_9G10RIiMjqXtlwN4aaNZovbeooyYVBYbYTgtVqRoUs5Lo5axW2bIly3uu3YUHp5jXdBiFYVfize7l"></script>
 	<!-- Core theme JS-->
 	<script src="js/scripts.js?v=4"></script>
 </body>
