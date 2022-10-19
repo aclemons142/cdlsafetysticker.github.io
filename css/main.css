@@ -151,6 +151,20 @@ label {
     display: block;
 }
 
+@media screen and (max-width: 350px) {
+	#us-flag-top {
+		max-width: 40px;
+	}
+	#us-flag-top ~ small {
+		line-height: 1.2em;
+			display: block;
+			text-align: center;
+			margin-top: 10px;
+			font-size: 10px;
+	}
+	
+}
+
 #us-flag-mini {
 	max-width: 26px;
 	height: auto;

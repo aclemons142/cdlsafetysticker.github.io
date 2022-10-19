@@ -42,6 +42,11 @@
 		</div>
 	</nav>
 	<div id="banner" class="d-none alert alert-warning text-center mb-0"></div>
+	<noscript>
+		<div class="alert alert-danger text-center mb-0">
+			You must have JavaScript enabled to view this site.
+		</div>
+	</noscript>
 	<!-- Mashead header-->
 	<header class="masthead pt-5">
 		<div class="container px-5">
@@ -65,8 +70,8 @@
 						<h1 class="display-2 text-center"><small class="d-none">The Original<br /></small> CDL Safety
 							Sticker</h1>
 						<p class="lead fw-normal text-center">Give your customers peace of mind with this easily visible
-							trailer sticker.<br />Our premium quality sticker will proudly highlight your certification
-							and insurance status.</p>
+							trailer sticker.<br />Our premium quality sticker will <strong>proudly highlight your certification
+							and insurance status</strong>.</p>
 						<div class="row">
 							<div class="col-12 text-center mt-2 mb-4">
 								<img id="small-sticker" src="./assets/img/sticker.jpg" class="img-fluid"
@@ -112,8 +117,8 @@
 			</div>
 			<div class="row justify-content-md-center">
 
-				<div class="col-9 mx-auto row">
-					<div class="col-12 col-md-6 mb-2">
+				<div class="col-11 mx-auto row">
+					<div class="col-12 col-md-6 mb-3">
 						<div class="card">
 							<div class="card-body">
 								<h5 class="card-title text-center">
@@ -124,7 +129,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-12 col-md-6 mb-2">
+					<div class="col-12 col-md-6 mb-3">
 						<div class="card">
 							<div class="card-body">
 								<h5 class="card-title text-center">
@@ -197,7 +202,7 @@
 						</div>
 						<div class="form-control p-3">
 							<div class="row mt-2 mb-3">
-								<div class="col-md-2">
+								<div class="col-12 col-sm-6 col-md-auto">
 									<label for="quantity" class="form-label">Quantity</label>
 									<select id="quantity" name="quantity" class="form-select">
 										<option>1</option>
@@ -436,7 +441,9 @@
 							<div class="alert alert-success" role="alert">
 								<div><i class="bi bi-check-circle"></i></div>
 								<h4 class="alert-heading">Success!</h4>
-								Your order has been placed. Your tracing information will be available soon.
+								Your order has been placed and will be reviewed for accuracy.
+								Once reviewed, your order will be sent to production. Please allow for 2-5 days for production and a week for shipping.
+								Tracking information will arrive from a service called EasyPost.
 							</div>
 						</div>
 						<div id="error" class="d-none">
@@ -444,7 +451,7 @@
 								<div><i class="bi bi-x-circle"></i></div>
 								<h4 class="alert-heading">Error</h4>
 								<p>We're sorry, there was an issue with your order.<br />
-									Please try again or call us at 1-888-219-2856</p>
+									Please try again or call us toll free at 1-888-219-2856</p>
 							</div>
 						</div>
 					</div>
@@ -453,8 +460,15 @@
 		</div>
 	</div>
 	<!-- PayPal JS-->
-	<script
-		src="https://www.paypal.com/sdk/js?client-id=Aa_9G10RIiMjqXtlwN4aaNZovbeooyYVBYbYTgtVqRoUs5Lo5axW2bIly3uu3YUHp5jXdBiFYVfize7l"></script>
+	<script type="text/javascript">
+		// Dynamically insert PayPal script
+		let id = (window.location.hostname != "cdlsafetysticker.com" || window.location.hostname != "www.cdlsafetysticker.com") ? "Aa_9G10RIiMjqXtlwN4aaNZovbeooyYVBYbYTgtVqRoUs5Lo5axW2bIly3uu3YUHp5jXdBiFYVfize7l" : "ASIc8K_KO5wU-fz4wrCyShE_GwsfIBxZ5gdPyjqAI7WqIYCdmUGlyVGbQDnDaHal6-YO_P_X9ZoMO0IE"
+		let script = document.createElement('script');
+		script.type = 'text/javascript';
+		script.src = "https://www.paypal.com/sdk/js?client-id=" + id;
+		let head = document.getElementsByTagName("head")[0];
+		head.after(script);
+	</script>
 	<!-- Core theme JS-->
 	<script src="js/scripts.js?v=4"></script>
 </body>
