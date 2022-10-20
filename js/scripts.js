@@ -2,9 +2,7 @@ const LOCAL = (window.location.hostname == "localhost" || window.location.hostna
 const STICKER_GET_DATA_URI = '/sticker-data';
 const GET_SHIPPING_DATA_URI = '/shipping-data';
 const SUBMIT_PRINT_ORDER = '/submit-print-order'
-const TODAY = new Date();
-const LAUNCH = new Date("10/20/2022")
-const UNDER_CONSTRUCTION = false;
+const UNDER_CONSTRUCTION = !(new URLSearchParams(window.location.href.split('?')[1]).get("test") === "true") || false;
 
 const URL = LOCAL ? 'http://127.0.0.1:3000' : 'https://services.cdlsafetysticker.com';
 
