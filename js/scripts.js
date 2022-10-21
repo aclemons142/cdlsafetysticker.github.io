@@ -61,6 +61,7 @@ window.addEventListener('DOMContentLoaded', async (event) => {
     let backButton = document.getElementById("backButton");
     let paypalButtonsContainer = document.getElementById(paypalButtonsContainerId.replace("#", ""));
     let quantityIllustration = document.getElementById("quantityIllustration").querySelector("div");
+    let billingSameAsShippingToggle = document.getElementById("billingSameAsShippingToggle");
 
     // Set initial quantity
     subtotal = Number.parseFloat(STARTING_PRICE * parseInt(quantity.value));
@@ -81,6 +82,7 @@ window.addEventListener('DOMContentLoaded', async (event) => {
         event.stopPropagation();
         let data = new FormData(form);
         let phoneElement = document.getElementsByName('phone')[0];
+        let billingIsDifferent = !billingSameAsShippingToggle.checked;
         if (!form.checkValidity() || !ValidatePhone(data.get('phone'))) {
             form.classList.add('was-validated');
             if (!ValidatePhone(data.get('phone'))) phoneElement.classList.add("override-with-error")
@@ -105,7 +107,7 @@ window.addEventListener('DOMContentLoaded', async (event) => {
             }}
             let { TOTAL, SHIPPING } = await GenerateCheckoutTotals(quantity, address);
             setTimeout(() => ShowCheckoutScreen(checkout, form, paypalButtonsContainer), 600);
-            CreateOrder(TOTAL, SHIPPING, userData);
+            CreateOrder(TOTAL, SHIPPING, userData, billingIsDifferent);
 
         }
     }, false)
@@ -240,7 +242,7 @@ window.addEventListener('DOMContentLoaded', async (event) => {
         return String(fixedNumberCurrency).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
 
-    function CreateOrder(estPrice, estShipping, userData) {
+    function CreateOrder(estPrice, estShipping, userData, billingIsDifferent) {
 
         estPrice = estPrice.toFixed(2);
         estShipping = estShipping.toFixed(2);
@@ -250,7 +252,29 @@ window.addEventListener('DOMContentLoaded', async (event) => {
             paypal.FUNDING.PAYPAL,
             paypal.FUNDING.VENMO,
             paypal.FUNDING.CARD
-        ]
+        ];
+
+        let payerData = {
+            name: {
+                given_name: user.first_name,
+                surname: user.last_name
+            },
+            address: {
+                address_line_1: address.address1,
+                address_line_2: address.address2,
+                admin_area_2: address.city,
+                admin_area_1: address.state,
+                postal_code: address.zip,
+                country_code: address.country,
+            },
+            phone: {
+                phone_number: {
+                    national_number: user.phone
+                }
+            },
+            email_address: user.email
+        }
+
 
         for (const fundingSource of fundingSources) {
             paypalButtons = paypal.Buttons({
@@ -263,26 +287,7 @@ window.addEventListener('DOMContentLoaded', async (event) => {
                 createOrder: (data, actions) => {
                     const createOrderPayload = {
                         intent: 'CAPTURE',
-                        payer: {
-                            name: {
-                                given_name: user.first_name,
-                                surname: user.last_name
-                            },
-                            address: {
-                                address_line_1: address.address1,
-                                address_line_2: address.address2,
-                                admin_area_2: address.city,
-                                admin_area_1: address.state,
-                                postal_code: address.zip,
-                                country_code: address.country,
-                            },
-                            phone: {
-                                phone_number: {
-                                    national_number: user.phone
-                                }
-                            },
-                            email_address: user.email
-                        },
+                        payer: payerData,
                         purchase_units: [
                             {
                                 amount: {
@@ -291,6 +296,7 @@ window.addEventListener('DOMContentLoaded', async (event) => {
                             }
                         ]
                     };
+                    if (billingIsDifferent) delete createOrderPayload.payer
                     return actions.order.create(createOrderPayload);
                 },
                 onApprove: (data, actions) => {
