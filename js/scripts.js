@@ -42,7 +42,8 @@ window.addEventListener('DOMContentLoaded', async (event) => {
     let priceElems = [
         document.querySelectorAll('#price-top')[0],
         document.querySelectorAll('#price-modal')[0],
-        document.querySelectorAll('#estimate')[0]
+        document.querySelectorAll('#estimate')[0],
+        document.querySelectorAll('#price-middle')[0]
     ];
     const STARTING_PRICE = price;
     let subtotal = 0;
@@ -62,6 +63,8 @@ window.addEventListener('DOMContentLoaded', async (event) => {
     let paypalButtonsContainer = document.getElementById(paypalButtonsContainerId.replace("#", ""));
     let quantityIllustration = document.getElementById("quantityIllustration").querySelector("div");
     let billingSameAsShippingToggle = document.getElementById("billingSameAsShippingToggle");
+    let phoneElement = document.getElementsByName('phone')[0];
+
 
     // Set initial quantity
     subtotal = Number.parseFloat(STARTING_PRICE * parseInt(quantity.value));
@@ -76,12 +79,18 @@ window.addEventListener('DOMContentLoaded', async (event) => {
         priceElems[2].innerText = "$" + (rf);
     });
 
+    // Phone re-validation after submission failure
+    phoneElement.addEventListener('change', e => {
+        if (phoneElement.classList.contains("override-with-error")) {
+            if (ValidatePhone(phoneElement.value)) phoneElement.classList.remove("override-with-error");
+        }
+    })
+
     // Form submission logic
     form.addEventListener('submit', async function (event) {
         event.preventDefault();
         event.stopPropagation();
         let data = new FormData(form);
-        let phoneElement = document.getElementsByName('phone')[0];
         let billingIsDifferent = !billingSameAsShippingToggle.checked;
         if (!form.checkValidity() || !ValidatePhone(data.get('phone'))) {
             form.classList.add('was-validated');
@@ -120,7 +129,6 @@ window.addEventListener('DOMContentLoaded', async (event) => {
         ShowOrderOverview();
     })
     
-
     // Set price everywhere
     priceElems.forEach(elem => elem.innerHTML = "$" + price);
 
@@ -145,7 +153,7 @@ window.addEventListener('DOMContentLoaded', async (event) => {
         const TOTAL = subtotal + shipping;
 
         checkoutElements.subtotal.innerText = "$" + FormatCurrency(SUBTOTAL.toFixed(2));
-        checkoutElements.shipping.innerText = "$" + FormatCurrency(SHIPPING.toFixed(2)) + " (Standard Shipping)";
+        checkoutElements.shipping.innerText = "$" + FormatCurrency(SHIPPING.toFixed(2));
         checkoutElements.total.innerText = "$" + FormatCurrency((TOTAL).toFixed(2));
         quantityIllustration.innerText = quantity;
 
@@ -166,20 +174,12 @@ window.addEventListener('DOMContentLoaded', async (event) => {
 
     // Get shipping data
     async function GetShippingData(address, quantity) {
-        let shippingDataFetch = await fetch(URL + GET_SHIPPING_DATA_URI, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json;charset=utf-8' },
-            body: JSON.stringify({
-                user: address,
-                qty: quantity
-            })
-        });
-        let shippingData = await shippingDataFetch.json();
-        let { standard } = shippingData;
-        return standard / 100;
+
+
+        return 0
     }
 
-    async function SubmitPrintOrder(userData, quantity, paypalOrderId) {
+    async function SubmitPrintOrder(userData, quantity, paypalOrderId, paymentInfo) {
         let orderSubmissionResponse = await fetch(URL + SUBMIT_PRINT_ORDER, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json;charset=utf-8' },
@@ -187,7 +187,8 @@ window.addEventListener('DOMContentLoaded', async (event) => {
                 user: userData.user,
                 address: userData.address,
                 qty: quantity,
-                id: paypalOrderId
+                id: paypalOrderId,
+                paymentInfo
             })
         });
         let data = await orderSubmissionResponse.json();
@@ -195,7 +196,7 @@ window.addEventListener('DOMContentLoaded', async (event) => {
     }
 
     function ValidatePhone(phoneNumber) {
-        const regEx = /^(1[-. ]?)?(\([2-9]\d{2}\)[-. ]?|[2-9]\d{2}[-. ]?)[2-9]\d{2}[-. ]?\d{4}$/;
+        const regEx = /^\+?[1-9]\d{1,14}$/;
         return regEx.test(phoneNumber);
     };
 
@@ -273,17 +274,22 @@ window.addEventListener('DOMContentLoaded', async (event) => {
             email_address: user.email
         }
 
+        let GetColor = (fundingSource) => {
+            if (fundingSource === paypal.FUNDING.PAYPAL) return "blue";
+            if (fundingSource === paypal.FUNDING.VENMO) return null;
+            return "black";
+        };
 
         for (const fundingSource of fundingSources) {
             paypalButtons = paypal.Buttons({
                 fundingSource: fundingSource,
                 style: {
                     shape: 'pill',
-                    color: fundingSource === paypal.FUNDING.PAYPAL ? 'blue' : 'black',
+                    color: GetColor(fundingSource),
                     layout: 'horizontal'
                 },
                 createOrder: (data, actions) => {
-                    const createOrderPayload = {
+                    let createOrderPayload = {
                         intent: 'CAPTURE',
                         payer: payerData,
                         purchase_units: [
@@ -295,11 +301,10 @@ window.addEventListener('DOMContentLoaded', async (event) => {
                         ],
                         application_context: {
                             shipping_preference: 'NO_SHIPPING'
-                        },
+                        }
                     };
                     if (billingIsDifferent) {
                         delete createOrderPayload.payer;
-                        // delete createOrderPayload.application_context
                     }
                     return actions.order.create(createOrderPayload);
                 },
@@ -307,13 +312,18 @@ window.addEventListener('DOMContentLoaded', async (event) => {
                     const captureOrderHandler = (details) => {
                         console.log('Transaction completed. Details: ' + JSON.stringify(details));
                         ShowTransactionSuccess();
-                        SubmitPrintOrder(userData, quantity.value, data.orderID);
+                        let { status, purchase_units } = details;
+                        let paymentInfo = {
+                            status,
+                            cost: purchase_units[0].amount.value
+                        }
+                        SubmitPrintOrder(userData, quantity.value, data.orderID, paymentInfo);
                     };
                     return actions.order.capture().then(captureOrderHandler);
                 },
                 onError: (err) => { 
                     ShowTransactionFailure();
-                    console.error('An error prevented the buyer from checking out with PayPal')
+                    console.error('An error prevented the buyer from checking out with PayPal: ' + err.message)
                 },
                 onClick: function (e) {
                     if (e.fundingSource === 'card') CollapseOrderOverview()
