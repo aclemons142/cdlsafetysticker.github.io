@@ -74,8 +74,14 @@
 							and insurance status</strong>.</p>
 						<div class="row">
 							<div class="col-12 text-center mt-2 mb-4">
-								<img id="small-sticker" src="./assets/img/sticker.jpg" class="img-fluid"
-									data-bs-toggle="modal" data-bs-target="#buyNowModal">
+								<div class="position-relative">
+									<img id="small-sticker" src="./assets/img/sticker.jpg" class="img-fluid" data-bs-toggle="modal"
+										data-bs-target="#buyNowModal">
+									<div id="price-middle-wrapper">
+										<div id="price-middle">$9.99</div>
+										<span class="badge">FREE SHIPPING</span>
+									</div>
+								</div>
 							</div>
 						</div>
 						<div class="d-flex text-center align-items-center">
@@ -102,7 +108,7 @@
 		<div class="container px-5">
 			<div class="row">
 				<div class="col-12">
-					<!-- <img id="big-sticker" src="./assets/img/sticker.jpg?b=2" class="img-fluid"> -->
+					<!--  -->
 				</div>
 			</div>
 		</div>
@@ -112,7 +118,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col">
-					<div class="lead text-center mb-4">We accept the following payment methods:</div>
+					<div class="text-center mb-4">We accept the following payment methods:</div>
 				</div>
 			</div>
 			<div class="row justify-content-md-center">
@@ -190,6 +196,8 @@
 								<div class="mt-2 d-inline-block text-muted">
 									<span class="text-decoration-line-through">$10.99</span>
 								</div>
+								<span class="badge bg-success rounded-pill">FREE SHIPPING</span>
+
 
 								<ul class="text-small mt-2">
 									<li>Matte finish</li>
@@ -215,14 +223,15 @@
 										<option>500</option>
 									</select>
 								</div>
-								<div class="col-auto">
+								<div class="d-none col-md-auto">
 									<div class="vr d-none d-md-inline-block"></div>
 								</div>
 								<div class="col">
+									<br class="d-block d-sm-none" />
 									<label>Estimated Price:</label><br /><span id="estimate"
-										class="d-block mt-2">-.--</span>
-									<small class="text-muted">Shipping charges will be estimated on the next
-										screen</small>
+										class="d-block mt-1">-.--</span>
+
+									<small class="text-muted">+ $0.00 Shipping</small>
 								</div>
 							</div>
 							<div class="row">
@@ -266,16 +275,15 @@
 								</div>
 								<div class="col-md-5">
 									<label for="phone" class="form-label">Phone</label>
-									<input type="text" class="form-control" id="phone" name="phone" 
-										required>
+									<input type="tel" class="form-control" id="phone" name="phone" pattern="^\+?[1-9]\d{1,14}$" required>
 									<div class="valid-feedback">
 										Looks good!
 									</div>
 									<div class="invalid-feedback">
-										Please provide a valid phone number.
+										Please provide a valid phone number. No dashes, spaces, or parentheses allowed.
 									</div>
 								</div>
-								<div class="col-md-6">
+								<div class="col-md-7">
 									<label for="city" class="form-label">City</label>
 									<input type="text" class="form-control" id="city" name="city" 
 										required>
@@ -359,7 +367,7 @@
 									</div>
 								</div>
 								<div class="col-md-3">
-									<label for="state" class="form-label">State</label>
+									<label for="country" class="form-label">Country</label>
 									<!-- All countries -->
 									<select class="form-control" id="country" name="country" required>
 										<option value="US" selected>United States</option>
@@ -427,11 +435,7 @@
 											</tr>
 											<tr>
 												<td>Shipping</td>
-												<td><span id="checkout-shipping"></span></td>
-											</tr>
-											<tr>
-												<td>Fees</td>
-												<td class="text-muted">(Based on payment method)</td>
+												<td><span id="checkout-shipping">$0.00</span></td>
 											</tr>
 											<tr>
 												<td><strong class="lead">Total</strong></td>
@@ -450,10 +454,10 @@
 						<div id="success" class="d-none">
 							<div class="alert alert-success" role="alert">
 								<div><i class="bi bi-check-circle"></i></div>
-								<h4 class="alert-heading">Success!</h4>
+								<h4 class="alert-heading">Thank you for your order!</h4>
 								Your order has been placed and will be reviewed for accuracy.
 								Once reviewed, your order will be sent to production. Please allow for 2-5 days for production and a week for shipping.
-								Tracking information will arrive from a service called EasyPost.
+								Tracking information available upon request.
 							</div>
 						</div>
 						<div id="error" class="d-none">

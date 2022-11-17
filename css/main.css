@@ -2,7 +2,9 @@
   --blue:#0280f4;
   --blueShadow: rgba(4, 83, 202, 0.35);
   --greenBg: rgba(59, 150, 65, 0.1);
+  --greenBgDark: rgba(68, 77, 69, 0.45);
   --green: rgb(0, 139, 9);
+  --lightGreen: rgb(234 243 235);
 }
 
 *,
@@ -184,12 +186,51 @@ label {
 	color: var(--green);
 }
 
+
+
 #price-modal {
 	position: relative;
 	font-size: 1.5rem;
 	background-color: var(--greenBg);
 	color: var(--green);
 }
+
+#price-middle-wrapper {
+	position: absolute;
+    bottom: -10%;
+    right: 8%;
+    border-radius: 3px;
+    padding: 0.7% 1.4%;
+    background-color: var(--lightGreen);
+	/* box-shadow: 2px 4px 12px var(--greenBgDark); */
+	box-shadow: 0 6px 10px var(--greenBg), 0 1px 2px var(--greenBgDark);
+	transform: rotate(3deg);
+}
+
+@media screen and (max-width: 768px) {
+	#price-middle-wrapper {
+		display: none;
+	}
+}
+
+@media screen and (min-width: 1180px) {
+	#price-middle-wrapper {
+		right: 20%;
+		bottom: -14%;
+	}
+}
+
+#price-middle {
+	font-weight: 900;
+	font-size: 2rem;
+	line-height: 2rem;
+	color: var(--green);
+}
+
+#price-middle + span {
+	color: var(--green);
+}
+
 
 #estimate {
 	font-size: 1.5rem;
@@ -240,19 +281,19 @@ h1:first-of-type > small {
 }
 
 #main-cta {
-	background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
+	/* background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
 	background-size: 400% 400%;
 	-webkit-animation: ChatGradient 4s ease infinite;
 	-moz-animation: ChatGradient 4s ease infinite;
-	border: none;
+	border: none; */
 	transition: all 0.05s ease-in;
 	will-change: box-shadow, transform;
 	font-size: 1.4rem;
 }
 
 #main-cta:hover {
-	box-shadow: 2px 12px 14px rgba(0, 0, 0, 0.3);
-	transform: scale(1.05);
+	box-shadow: 2px 6px 12px rgba(0, 0, 0, 0.3);
+	transform: scale(1.1);
 }
 #mainNav button.disabled,
 #main-cta.disabled {
